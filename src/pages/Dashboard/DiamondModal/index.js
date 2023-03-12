@@ -40,9 +40,8 @@ const AddDiamondModal = ({
     enableReinitialize: true,
     validationSchema: Yup.object({
       date: Yup.string().required("Date is required"),
-      lotNo: Yup.number()
-        .required("lotNo is required")
-        .typeError("Invalid decimal format"),
+      lotNo: Yup.string()
+        .required("lotNo is required"),
       totalDiamond: Yup.number()
         .required("Total Diamond is required")
         .typeError("Invalid Input"),
