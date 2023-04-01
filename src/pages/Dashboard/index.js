@@ -1,4 +1,3 @@
-import Layout from "../../components/Layout";
 import UserInfomation from "./UserInfomation";
 import TopCard from "./TopCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +7,6 @@ import { setModalOpen } from "../../reducers/userSlice";
 import UserModal from "./UserModal";
 import AddDiamondModal from "./DiamondModal";
 import { setDiamondModalOpen } from "../../reducers/diamondSlice";
-import { ToastContainer } from "react-toastify";
 
 export default function Dashboard() {
   const { selectedUser, modalOpen } = useSelector((state) => state.user);
@@ -24,8 +22,7 @@ export default function Dashboard() {
   } = useSelector((state) => state.diamond);
   const dispatch = useDispatch();
   return (
-    <Layout>
-      <ToastContainer />
+    <>
       <div className="relative z-10">
         <UserModal
           modalOpen={modalOpen}
@@ -53,6 +50,6 @@ export default function Dashboard() {
           <DiamondTable />
         </div>
       </div>
-    </Layout>
+    </>
   );
 }

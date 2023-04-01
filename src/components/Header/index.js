@@ -1,14 +1,15 @@
+import React from "react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import DiamondOutline from "../../assets/svg/diamond-outline.svg";
 import constants from "../../utilities/constants";
 import Image from "../Common/Image";
 
 const navigationOptions = [
-  { id: 1, name: "Dashboard", href: "/", current: true },
-  { id: 2, name: 'Logout', href: '/login', current: false },
+  { id: 1, name: "Dashboard", href: "/" },
+  { id: 2, name: "Worker", href: "/worker" },
+  { id: 3, name: "Logout", href: "/login" },
 ];
 
 function classNames(...classes) {
@@ -16,27 +17,16 @@ function classNames(...classes) {
 }
 
 export default function Header() {
-  const navigate =  useNavigate();
-  const [navigation, setNavigation] = useState(navigationOptions);
-
-  const handleNavigationChange = (id) => {
-    setNavigation(
-      navigationOptions.map((menu) => {
-        return {
-          ...menu,
-          current: menu.id === id,
-        };
-      })
-    );
-  };
+  const navigate = useNavigate();
+  console.log("currentUrl: ", window.location.pathname);
 
   const handleLogoClick = () => {
-    navigate('/');
-  }
-  
+    navigate("/");
+  };
+
   const handleLogout = () => {
     constants.setAuthTokenInSessionStorage(null);
-  }
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -55,20 +45,19 @@ export default function Header() {
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
-                    {navigation.map((item) => (
+                    {navigationOptions.map(({ name, href }) => (
                       <Link
-                        key={item.name}
-                        to={item.href}
+                        key={name}
+                        to={href}
                         className={classNames(
-                          item.current
+                          window.location.pathname === href
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
-                        aria-current={item.current ? "page" : undefined}
-                        onClick={() => item.href === '/login' ? handleLogout() : handleNavigationChange(item.id)}
+                        onClick={() => href === "/login" && handleLogout()}
                       >
-                        {item.name}
+                        {name}
                       </Link>
                     ))}
                   </div>
@@ -90,20 +79,20 @@ export default function Header() {
 
           <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              {navigation.map((item) => (
+              {navigationOptions.map(({ name, href }) => (
                 <Disclosure.Button
-                  key={item.name}
+                  key={name}
                   as="a"
-                  href={item.href}
+                  href={href}
                   className={classNames(
-                    item.current
+                    window.location.pathname === href
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
-                  aria-current={item.current ? "page" : undefined}
+                  onClick={() => href === "/login" && handleLogout()}
                 >
-                  {item.name}
+                  {name}
                 </Disclosure.Button>
               ))}
             </div>

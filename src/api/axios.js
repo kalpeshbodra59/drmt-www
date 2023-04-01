@@ -1,7 +1,8 @@
 import axios from "axios";
+//"https://sore-gold-adder-tutu.cyclic.app/api"
 
 const axiosInstance = axios.create({
-  baseURL: "https://sore-gold-adder-tutu.cyclic.app/api",
+  baseURL: "http://localhost:5000/api",
   timeout: 10000,
 });
 
