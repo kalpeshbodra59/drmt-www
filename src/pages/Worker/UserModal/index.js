@@ -48,8 +48,8 @@ const UserModal = ({ modalOpen = false, setModalOpen = () => {} }) => {
         constants.setAuthTokenInSessionStorage(null);
         navigate('/login');
       } else if (result.status === statusCodes.create) {
-        const { customers } = formattedCustomerData([result.data.data]);
-        dispatch(appendNewWorkerToWorkerOptions(customers[0]));
+        const { workers } = formattedCustomerData([result.data.data]);
+        dispatch(appendNewWorkerToWorkerOptions(workers[0]));
       }
 
       setModalOpen(false);
