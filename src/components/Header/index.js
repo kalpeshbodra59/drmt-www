@@ -18,7 +18,6 @@ function classNames(...classes) {
 
 export default function Header() {
   const navigate = useNavigate();
-  console.log("currentUrl: ", window.location.pathname);
 
   const handleLogoClick = () => {
     navigate("/");
@@ -55,6 +54,7 @@ export default function Header() {
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
+                        aria-current={window.location.pathname === href ? "page" : undefined}
                         onClick={() => href === "/login" && handleLogout()}
                       >
                         {name}
@@ -90,6 +90,7 @@ export default function Header() {
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
+                  aria-current={window.location.pathname === href ? "page" : undefined}
                   onClick={() => href === "/login" && handleLogout()}
                 >
                   {name}
