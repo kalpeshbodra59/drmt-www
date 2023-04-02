@@ -32,6 +32,7 @@ const AddCreditModal = ({ modalOpen = false, setModalOpen = () => {} }) => {
       // Submit form data to the API
       const { date, price, credit } = values;
       const authToken = constants.getAuthTokenFromSessionStorage();
+      console.log('credit: ', credit);
       const body = {
         date,
         price: credit === "debit" ? -price : price,
