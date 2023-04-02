@@ -6,8 +6,7 @@ import DiamondTable from "./DiamondTable";
 import { resetUser, setModalOpen } from "../../reducers/userSlice";
 import UserModal from "./UserModal";
 import AddDiamondModal from "./DiamondModal";
-import { resetDiamond, setDiamondModalOpen } from "../../reducers/diamondSlice";
-import Button from "../../components/Common/Button";
+import { setDiamondModalOpen } from "../../reducers/diamondSlice";
 
 export default function Dashboard() {
   const { selectedUser, modalOpen } = useSelector((state) => state.user);
@@ -22,11 +21,6 @@ export default function Dashboard() {
     id,
   } = useSelector((state) => state.diamond);
   const dispatch = useDispatch();
-
-  const onHandleReset = () => {
-    dispatch(resetUser());
-    dispatch(resetDiamond());
-  }
 
   return (
     <>
@@ -50,11 +44,6 @@ export default function Dashboard() {
         />
       </div>
       <div className="relative z-1 px-4 py-6 sm:px-0">
-        <Button
-          text="Reset Selection"
-          className="border border-slate-200 rounded h-9 shadow-sm px-4 mb-6"
-          onClick={onHandleReset}
-        />
         <TopCard />
         <div className="flex flex-col gap-y-4">
           <UserInfomation data={selectedUser} />
