@@ -42,6 +42,7 @@ export const diamondSlice = createSlice({
     setDiamondTableData: (state, action) => {
       state.tableData = action.payload;
     },
+    resetDiamond: () => initialState,
   },
 });
 
@@ -50,6 +51,7 @@ export const {
   setDiamondTableYear,
   setDiamondTableMonth,
   setDiamondTableData,
+  resetDiamond,
 } = diamondSlice.actions;
 
 export default diamondSlice.reducer;

@@ -18,12 +18,14 @@ export const creditSlice = createSlice({
     setCreditTableData: (state, action) => {
       state.tableData = action.payload || {};
     },
+    resetCredit: () => initialState,
   },
 });
 
 export const {
   setCreditModalOpen,
   setCreditTableData,
+  resetCredit,
 } = creditSlice.actions;
 
 export default creditSlice.reducer;

@@ -22,6 +22,7 @@ export const userSlice = createSlice({
     appendNewUserToUserOptions: (state, action) => {
       state.userOptions.push(action.payload);
     },
+    resetUser: (state) => ({ ...initialState, userOptions: state.userOptions }),
   },
 });
 
@@ -30,6 +31,7 @@ export const {
   setModalOpen,
   setUserOptions,
   appendNewUserToUserOptions,
+  resetUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;

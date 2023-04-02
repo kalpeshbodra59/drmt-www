@@ -22,6 +22,10 @@ export const workerSlice = createSlice({
     appendNewWorkerToWorkerOptions: (state, action) => {
       state.workerOptions.push(action.payload);
     },
+    resetWorker: (state) => ({
+      ...initialState,
+      workerOptions: state.workerOptions,
+    }),
   },
 });
 
@@ -30,6 +34,7 @@ export const {
   setModalOpen,
   setWorkerOptions,
   appendNewWorkerToWorkerOptions,
+  resetWorker,
 } = workerSlice.actions;
 
 export default workerSlice.reducer;
